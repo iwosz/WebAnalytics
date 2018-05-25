@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebAlanytics - Test App</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row mt-2">
+        <div class="col">
+            <h2>WebAnalytics <sup>test</sup></h2>
+            <p>Welcome to WebAnalytics test application. Now you can start interacting with this page. Collected information will be displayed below.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div id="wa-div-error" class="card d-none">
+                <div id="wa-div-error-message" class="card-body bg-danger text-white"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-sm-6">
+            <div id="wa-div-env-info" class="d-none">
+                <h5>Environment data collected</h5>
+                <ul>
+                    <li>Browser name: <strong id="wa-data-env-browserName"></strong></li>
+                    <li>Browser version: <strong id="wa-data-env-browserVersion"></strong></li>
+                    <li>Operating system: <strong id="wa-data-env-os"></strong></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col col-sm-6">
+            <div id="wa-div-device-info" class="d-none">
+                <h5>Device data collected</h5>
+                <ul>
+                    <li>Device name: <strong id="wa-data-device-name"></strong></li>
+                    <li>Display resolution: <strong id="wa-data-device-res"></strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-sm-12">
+            <div id="wa-div-events-info" class="d-none">
+                <h5>Interaction data collected</h5>
+                <div id="wa-div-events-history"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="main.bundle.js"></script>
+</body>
+</html>

@@ -1,2 +1,2 @@
-# WebAnalytics
-WebAnalytics project repository
+# WebAnalytics UI
+WebAnalytics UI Engine project repository.

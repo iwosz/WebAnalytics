@@ -1,0 +1,23 @@
+{
+  "name": "WebAnalytics.UI",
+  "version": "0.0.1",
+  "author": "mw",
+  "private": true,
+  "dependencies": {
+    "@types/detect-browser": "^2.0.1",
+    "detect-browser": "^2.4.0",
+    "es6-promise": "^4.2.4",
+    "reflect-metadata": "^0.1.12",
+    "ts-loader": "^4.3.0"
+  },
+  "devDependencies": {
+    "typescript": "^2.8.3",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.4",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "scripts": {
+    "built": "webpack --mode development",
+    "start": "webpack-dev-server"
+  }
+}
