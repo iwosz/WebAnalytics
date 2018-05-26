@@ -27,7 +27,6 @@ export class View {
             let wrapperElement = <HTMLElement>document.querySelector('#wa-div-device-info');
             let deviceNameElement = <HTMLElement>document.querySelector("#wa-data-device-name");
             let resElement = <HTMLElement>document.querySelector("#wa-data-device-res");
-            let osElement = <HTMLElement>document.querySelector("#wa-data-env-os");
 
             if(wrapperElement) {
                 if(deviceNameElement) deviceNameElement.innerHTML = <string>data.deviceName;
@@ -62,6 +61,30 @@ export class View {
                     eventsHistoryElement.appendChild(node);
                 }
 
+                this.showEl(wrapperElement);
+            }
+        }
+    }
+
+    renderClicksPerMinuteInfo(cpm: number) {
+        if(cpm) {
+            let wrapperElement = <HTMLElement>document.querySelector('#wa-div-aggregation-info');
+            let clicksPerMinuteElement = <HTMLElement>document.querySelector("#wa-div-aggregation-cpm");
+
+            if(wrapperElement) {
+                if(clicksPerMinuteElement) clicksPerMinuteElement.innerHTML = <string>clicksPerMinuteElement.innerHTML + (clicksPerMinuteElement.innerHTML.length ? ', ' : '') + cpm.toString();
+                this.showEl(wrapperElement);
+            }
+        }
+    }
+
+    renderAvgClicksPerMinuteInfo(avgcpm: number) {
+        if(avgcpm) {
+            let wrapperElement = <HTMLElement>document.querySelector('#wa-div-aggregation-info');
+            let avgClicksPerMinuteElement = <HTMLElement>document.querySelector("#wa-div-aggregation-avgcpm");
+
+            if(wrapperElement) {
+                if(avgClicksPerMinuteElement) avgClicksPerMinuteElement.innerHTML = <string>avgcpm.toString();
                 this.showEl(wrapperElement);
             }
         }

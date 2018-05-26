@@ -2,6 +2,7 @@ import {Injectable} from './utils/decorators';
 import {Extractor} from './extractor';
 import {LoggerService} from './services/logger';
 import {View} from './view';
+import {EventData} from './models/eventData';
 
 @Injectable()
 export class App {
@@ -11,12 +12,14 @@ export class App {
 
     constructor(extractor: Extractor, view: View) {
         // todo: session start
-        // todo: agregator start
+        // todo: aggregator start
         this.extractor = extractor;
         this.view = view;
     }
 
     start() {
+        this.extractor.attach(this);
+
         try {
             let envData = this.extractor.obtainEnvData();
 
@@ -31,4 +34,15 @@ export class App {
         }
     }
 
+    eventHandler(event: EventData) {
+        this.view.renderEventInfo(event);
+    }
+
+    cpmAggregationHandler(cpm: number) {
+        this.view.renderClicksPerMinuteInfo(cpm);
+    }
+
+    avgCpmCalculationHandler(avgcpm: number) {
+        this.view.renderAvgClicksPerMinuteInfo(avgcpm);
+    }
 }

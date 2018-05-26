@@ -1,26 +1,35 @@
 import {Injectable} from './utils/decorators';
+import {App} from './app';
 import {EnvData} from './models/envData';
 import {EventClass, EventData} from './models/eventData';
 import {Browser} from './plugins/browser';
 import {Window} from './plugins/window';
 import {Device} from './plugins/device';
 import {LoggerService} from './services/logger';
-import {View} from './view';
+import {Aggregator} from './aggregator';
 
 @Injectable()
 export class Extractor {
 
+    private observer?: App;
     private browser: Browser;
     private window: Window;
     private device: Device;
     private eventHistory: EventData[] = [];
     private logger: LoggerService;
+    private aggregator: Aggregator;
 
-    constructor(browser: Browser, window: Window, device: Device, logger: LoggerService) {
+    constructor(browser: Browser, window: Window, device: Device, logger: LoggerService, aggregator: Aggregator) {
         this.browser = browser;
         this.window = window;
         this.device = device;
         this.logger = logger;
+        this.aggregator = aggregator;
+    }
+
+    attach(observer: App) {
+        this.observer = observer;
+        this.aggregator.attach(observer);
     }
 
     obtainEnvData() {
@@ -42,7 +51,7 @@ export class Extractor {
         this.window.onEvent('click', function(e) { self.obtainMouseEventData(e); });
         this.window.onEvent('keyup', function(e) { self.obtainKeyEventData(e); });
         //this.window.onEvent('mousemove', function(e) { self.obtainMouseEventData(e); });
-        this.window.onEvent('scroll', function(e) { self.obtainMouseEventData(e); });
+        this.window.onEvent('scroll', function(e) { self.obtainEventData(e); });
     }
 
     obtainEventData(event: Event): EventData {
@@ -83,15 +92,15 @@ export class Extractor {
     }
 
     addEvent(event: EventData) {
-        // todo: agregate event
-
         this.eventHistory.push(event);
         this.obtainEventHandler(event);
     }
 
     private obtainEventHandler(event: EventData) {
-        let view = new View();
+        this.aggregator.aggregateEvent(event);
 
-        view.renderEventInfo(event);
+        if(this.observer) {
+            this.observer.eventHandler(event);
+        }
     }
 }

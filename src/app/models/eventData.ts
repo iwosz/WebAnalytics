@@ -4,6 +4,11 @@ export const enum EventClass {
     keyboard = 'keyboard'
 }
 
+export const enum EventName {
+    click = 'click',
+    keyup = 'keyup'
+}
+
 export class EventData {
     detectedOn: Date;
     eventClass?: EventClass;
